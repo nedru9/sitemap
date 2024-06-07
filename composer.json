@@ -1,0 +1,19 @@
+{
+    "name": "nedrug/sitemapgenerator",
+    "description": "sitemap",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nedrug\\Sitemapgenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "nedru9",
+            "email": "kurshevaadeliya@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
