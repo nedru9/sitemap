@@ -6,6 +6,7 @@ include 'Exception/DirectoryCreateException.php';
 include 'Exception/FileWriteException.php';
 include 'Exception/TypeFileException.php';
 
+use DOMDocument;
 use nedrug\sitemapGenerator\Exception\DirectoryCreateException;
 use nedrug\sitemapGenerator\Exception\FileWriteException;
 use nedrug\sitemapGenerator\Exception\TypeFileException;
