@@ -1,4 +1,4 @@
-composer require nedrug/sitemapgenerator
+composer require nedrug/sitemapgenerator:"@dev"
 
 пример:
 ```php
