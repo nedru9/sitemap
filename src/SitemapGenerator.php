@@ -115,15 +115,27 @@ class SitemapGenerator {
         return true;
     }
     private function generateXMLSitemap() {
-        $xml = new SimpleXMLElement('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>');
+        $xmlString = '<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>';
+        $xml = new DOMDocument();
+        $xml->loadXML($xmlString);
+        $urlSet = $xml->documentElement;
         foreach ($this->pages as $page) {
-            $url = $xml->addChild('url');
-            $url->addChild('loc', $page['loc']);
-            $url->addChild('lastmod', $page['lastmod']);
-            $url->addChild('priority', $page['priority']);
-            $url->addChild('changefreq', $page['changefreq']);
+            $url = $xml->createElement('url');
+            $loc = $xml->createElement('loc', htmlspecialchars($page['loc']));
+            $lastmod = $xml->createElement('lastmod', $page['lastmod']);
+            $priority = $xml->createElement('priority', $page['priority']);
+            $changefreq = $xml->createElement('changefreq', $page['changefreq']);
+            $url->appendChild($loc);
+            $url->appendChild($lastmod);
+            $url->appendChild($priority);
+            $url->appendChild($changefreq);
+            $urlSet->appendChild($url);
         }
-        $this->saveSitemap($xml->asXML());
+        $this->saveSitemap($xml->saveXML());
     }
     private function generateCSVSitemap() {
         $fp = fopen('php://temp', 'w+');
