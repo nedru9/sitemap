@@ -1,6 +1,7 @@
 composer require nedrug/sitemapgenerator
 
 пример:
+```php
 <?php
 namespace Nedrug\Sitemapgenerator;
 require 'vendor/autoload.php';
@@ -19,4 +20,4 @@ $pages = [
     ],
 ];
 $sitemap = new SitemapGenerator($pages, 'json', '/var/www/site.ru/upload/sitemap.json');
-
+```
