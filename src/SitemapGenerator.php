@@ -72,23 +72,23 @@ class SitemapGenerator {
         foreach ($this->pages as $page => $element) {
             if (isset($element['loc'])) {
                 if ( !is_string($element['loc']) || $element['loc'] == '' || !isset($element['loc'])) {
-                    $errors[$page]['loc'] = 'provide correct loc!';
+                    $errors[$page]['loc'] = 'Некорректный loc!';
                 }
             }
             if (isset($element['lastmod'])) {
                 if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $element['lastmod'])) {
-                    $errors[$page]['date'] = 'provide correct date!';
+                    $errors[$page]['date'] = 'Некорректный date!';
                 }
             }
             if (isset($element['priority'])) {
-                if ( !is_int((int) $element['priority']) && !is_float((float) $element['priority']) ) {
-                    $errors[$page]['priority'] = 'provide correct priority!';
+                if (!is_numeric($element['priority'])) {
+                    $errors[$page]['priority'] = 'Некорректный priority!';
                 }
             }
             if (isset($element['changefreq']))
             {
                 if ( !is_string($element['changefreq']) || $element['changefreq'] == '' ) {
-                    $errors[$page]['changefreq'] = 'provide correct changefreq!';
+                    $errors[$page]['changefreq'] = 'Некорректный changefreq!';
                 }
             }  
         }
